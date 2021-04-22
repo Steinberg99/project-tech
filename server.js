@@ -2,16 +2,20 @@ const express = require('express');
 const app = express();
 const port = 4200;
 
+pageHeaders = ['DogeMeet home', 'DogeMeet profile', 'DogeMeet search'];
+
+app.set('view engine', 'pug');
+
 app.get('/', (req, res) => { 
-    res.send('DogeMeet!');
+    res.render('home', { pageHeader: pageHeaders[0], user: { name: 'Henk' }});
 });
 
-app.get('/profile/:profileId', (req, res) => { 
-    res.send(`Profile page of ${req.params.profileId}`);
+app.get('/profile', (req, res) => { 
+    res.render('profile', { pageHeader: pageHeaders[1]});
 });
 
 app.get('/search', (req, res) => { 
-    res.send('Search page')
+    res.render('search', { pageHeader: pageHeaders[2]});
 });
 
 app.use(express.static('static'));

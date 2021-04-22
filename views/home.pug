@@ -1,0 +1,17 @@
+doctype html
+html 
+    include components/head.pug
+    body 
+        include components/header.pug
+        h1= pageHeader
+        if(user)
+            p Hi #{user.name}, welcome to DogeMeet!
+        else 
+            p Hi stranger, welcome to DogeMeet!
+        mixin doge(name, description)
+            li
+                h3= name
+                p= description 
+        ul
+            +doge('Kenji', 'Kijk dan hoe cute mijn Kenji is!')
+            +doge('Boris', 'Boris houdt heel veel van salami.')
