@@ -1,7 +1,69 @@
 doctype html
 html 
     include components/head.pug
+    style 
+        include ../static/public/css/search.css
     body 
         include components/header.pug
-        h1= pageHeader 
-    
+        main 
+            form(action="") 
+                section 
+                    h3(class="section_header") DOGE PREFRENCES
+                    div(class="age_container") 
+                        label(class="age_label" for="age") Age 
+                        p Select an age
+                        input(type="range" name="age" value="0" step="1" min="0" max="15")
+                    div 
+                        h3 Doge Vibe
+                        ul(class="checkbox_list")
+                            li 
+                                input(type="checkbox" id="cute" name="cute")
+                                label(for="cute") Cute
+                            li 
+                                input(type="checkbox" id="playful" name="playful")
+                                label(for="playful") Playful
+                            li 
+                                input(type="checkbox" id="fluffy" name="fluffy")
+                                label(for="fluffy") Fluffy
+                            li 
+                                input(type="checkbox" id="relaxed" name="relaxed")
+                                label(for="relaxed") Relaxed
+                            li
+                                input(type="checkbox" id="cool" name="cool")
+                                label(for="cool") Cool
+                            li 
+                                input(type="checkbox" id="beautiful" name="beautiful")
+                                label(for="beautiful") Beautiful
+                            li 
+                                input(type="checkbox" id="chubby" name="chubby")
+                                label(for="chubby") Chubby
+                section 
+                    h3(class="section_header") LOCATION PREFRENCES 
+                    div     
+                        h3 Location Type
+                        ul(class="checkbox_list")
+                            li 
+                                input(type="checkbox" id="beach" name="beach")
+                                label(for="beach") Beach
+                            li 
+                                input(type="checkbox" id="forest" name="forest")
+                                label(for="forest") Forest
+                            li  
+                                input(type="checkbox" id="park" name="park")
+                                label(for="park") Park
+                            li 
+                                input(type="checkbox" id="lake" name="lake")
+                                label(for="lake") Lake
+                            li 
+                                input(type="checkbox" id="city_walk" name="city_walk")
+                                label(for="city_walk") City walk
+                    div 
+                        h3 Locations Near You 
+                        ul(class="checkbox_list")
+                            each location in locations 
+                                li(class="location_list_item")
+                                    input(type="checkbox" id=`${location.name.toLowerCase()}` name=`${location.name.toLowerCase()}`)
+                                    label(for=`${location.name.toLowerCase()}`)= location.name
+                                        span= location.location_distance
+                        button(class="secondary_button") Load more locations
+                input(class="primary_button" type="submit" value="Search")

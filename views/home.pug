@@ -1,17 +1,25 @@
 doctype html
 html 
     include components/head.pug
+    style 
+        include ../static/public/css/home.css
     body 
         include components/header.pug
-        h1= pageHeader
-        if(user)
-            p Hi #{user.name}, welcome to DogeMeet!
-        else 
-            p Hi stranger, welcome to DogeMeet!
-        mixin doge(name, description)
-            li
-                h3= name
-                p= description 
-        ul
-            +doge('Kenji', 'Kijk dan hoe cute mijn Kenji is!')
-            +doge('Boris', 'Boris houdt heel veel van salami.')
+        main
+            if(doge) 
+                article 
+                    div(class="image_container")
+                        img(src=`${doge.image_link}`, alt=`A picture of ${doge.name}`)
+                    section 
+                        div 
+                            h3= `${doge.name}, ${doge.age}`
+                            p= location.name
+                        p= doge.description
+                include components/like.pug
+                include components/nav.pug
+            else 
+                article(id="empty_state_article")
+                    h2 No more doggos :(
+                    p No worries! These were just all the doggos in your area, change your search criteria to find more cute doggos.
+                    a(class="primary_button" href="/search/") Change search
+                include components/nav.pug
