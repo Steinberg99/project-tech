@@ -14,6 +14,10 @@ With the help of DogeMeet dog owners can connect with each other based on their 
 
 > **NOTE:** Before you can install DogeMeet be sure to have both [Node.js](https://nodejs.org/en/download/) and NPM installed. NPM should automatically be installed when installing Node.js.
 
+You can install my project locally by running the following command in your local folder.
+
+- `git clone https://github.com/Steinberg99/project-tech`
+
 When you have cloned my repository be sure to run the command `npm install` to install all of the project dependencies. When you have done this you can run the command `npm start` to start DogeMeet. DogeMeet currently only works for mobile screens so be sure to select a mobile screen size using the inspector in Google Chrome (Option + ⌘ + J on macOS or Shift + CTRL + J on Windows).
 
 # Technologies
