@@ -1,24 +1,31 @@
+![Logo banner](./static/public/images/readme_logo_banner.png)
+
 # DogeMeet
 
-Welkom! Dit is mijn repo voor mijn school project voor Project Tech. Ik heb tijdens dit project gewerkt aan een like- en zoekfunctie van mijn matchingsplatform DogeMeet.
+Welcome! This is my repository for my matchings feature made for project-tech. Ik worked on my website called DogeMeet. DogeMeet is a machtigings platform made for dog owners. During this project I worked on the search and like feature for DogeMeet.
 
-# Het Concept
+# The concept
 
-Met behulp van mijn platform DogeMeet kunnen mensen met elkaar worden verbonden gebaseerd op hun huisdieren (voornamelijk honden, maar alles wat aan een riem kan lopen mag). Gebruikers kunnen op een soortgelijke manier als Tinder door de huisdieren van andere gebruikers heen “swipen”. Wanneer twee mensen elkaar een like geven kunnen ze met elkaar chatten. Huisdiereigenaren kunnen nu dus bijvoorbeeld afspreken om met elkaar een wandeling te maken. Zo komen zij en hun huisdieren in contact met anderen.
+With the help of DogeMeet dog owners can connect with each other based on their beloved four legged friends! Users can, in a similar way to Tinder, swipe through other users' dogs. When two people like each other's dogs they can chat with each other. Dog owners can for example meet up to go for a walk.
 
-# Installeren 
+![Design banner](./static/public/images/readme_design_banner.png)
 
-Je kan mijn project installeren door mijn repo lokaal te klonen. Vervolgens moet je via de terminal (in de lokale folder) de command `npm install` uitvoeren. Hiervoor moet natuurlijk NPM en Node wel geïnstalleerd zijn op je machine. Door het commando `npm run start-server` uit te voeren kan mijn feature bekeken worden op localhost met port 4200. 
+# How to install
 
-> **NOTE:** Mijn feature is gemaakt voor mobiele formaten en zal er op desktop computers niet al te best uit zien.  
+> **NOTE:** Before you can install DogeMeet be sure to have both [Node.js](https://nodejs.org/en/download/) and NPM installed. NPM should automatically be installed when installing Node.js.
 
-# De technologieën 
+When you have cloned my repository be sure to run the command `npm install` to install all of the project dependencies. When you have done this you can run the command `npm start` to start DogeMeet. DogeMeet currently only works for mobile screens so be sure to select a mobile screen size using the inspector in Google Chrome (Option + ⌘ + J on macOS or Shift + CTRL + J on Windows).
 
-Voor het uitwerken van mijn feature heb ik een aantal technologieën gebruikt: 
-* Node.js
-* Express
-* Pug
+# Technologies
+
+DogeMeet makes use of the following technologies:
+
+- [Node.js](https://nodejs.org/en/download/),
+- [Express](https://expressjs.com/),
+- [Pug](https://pugjs.org/api/getting-started.html),
+- [MongoDB](https://www.mongodb.com/),
+- [Heroku](https://www.heroku.com/).
 
 # License
 
-MIT License 
+MIT License

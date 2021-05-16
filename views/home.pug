@@ -7,14 +7,15 @@ html
         include components/header.pug
         main
             if(doge) 
-                article 
-                    div(class="image_container")
-                        img(src=`${doge.image_link}`, alt=`A picture of ${doge.name}`)
-                    section 
-                        div 
-                            h3= `${doge.name}, ${doge.age}`
-                            p= location.name
-                        p= doge.description
+                a(href=`/profile/${doge.id}`) 
+                    article 
+                        div(class="image_container")
+                            img(src=`${doge.image_link}`, alt=`A picture of ${doge.name}`)
+                        section 
+                            div 
+                                h3= `${doge.name}, ${doge.age}`
+                                p= location.name
+                            p= doge.description
                 include components/like.pug
                 include components/nav.pug
             else 

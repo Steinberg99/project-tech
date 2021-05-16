@@ -6,16 +6,16 @@ html
     body 
         include components/header.pug
         main 
-            form(action="") 
+            form(action="/search-result", method="post") 
                 section 
                     h3(class="section_header") DOGE PREFRENCES
                     div(class="age_container") 
                         label(class="age_label" for="age") Age 
-                        p Select an age
-                        input(type="range" name="age" value="0" step="1" min="0" max="15")
+                        p(id="age_counter") Select an age
+                        input(id="age_slider" type="range" name="age" value="0" step="1" min="0" max="15")
                     div 
                         h3 Doge Vibe
-                        ul(class="checkbox_list")
+                        ul(id="doge_vibe_list" class="checkbox_list")
                             li 
                                 input(type="checkbox" id="cute" name="cute")
                                 label(for="cute") Cute
@@ -41,7 +41,7 @@ html
                     h3(class="section_header") LOCATION PREFRENCES 
                     div     
                         h3 Location Type
-                        ul(class="checkbox_list")
+                        ul(id="location_types" class="checkbox_list")
                             li 
                                 input(type="checkbox" id="beach" name="beach")
                                 label(for="beach") Beach
@@ -59,11 +59,12 @@ html
                                 label(for="city_walk") City walk
                     div 
                         h3 Locations Near You 
-                        ul(class="checkbox_list")
+                        p(id="locations_text") Select a Location Type and find the nearest places where you can meet other dog owners!
+                        ul(id="locations_list" class="checkbox_list")
                             each location in locations 
-                                li(class="location_list_item")
+                                li(class="location_list_item" class=location.location_type)
                                     input(type="checkbox" id=`${location.name.toLowerCase()}` name=`${location.name.toLowerCase()}`)
                                     label(for=`${location.name.toLowerCase()}`)= location.name
                                         span= location.location_distance
-                        button(class="secondary_button") Load more locations
-                input(class="primary_button" type="submit" value="Search")
+                input(id="submit_button" class="primary_button" type="submit" value="Search")
+    script(src="../public/js/search.js") 
