@@ -11,6 +11,7 @@ let dogeVibes = dogeVibesList.getElementsByTagName('li');
 
 let submitButton = document.querySelector('#submit_button');
 
+//Function that enables the submit button when the user has filled in all the search criteria.
 function enableSubmitButton() {
   if (
     ageSlider.value == 0 ||
@@ -24,6 +25,7 @@ function enableSubmitButton() {
   }
 }
 
+//Function that checks if one of the ceckboxes in a list has been checked.
 function oneChecked(list) {
   let oneChecked = false;
   for (let i = 0; i < list.length; i++) {
@@ -35,6 +37,7 @@ function oneChecked(list) {
   return oneChecked;
 }
 
+//Function that filters the locations based on the checked location types.
 function filterLocations(type, display) {
   for (let i = 0; i < locations.length; i++) {
     if (locations[i].classList.contains(type)) {
@@ -42,22 +45,21 @@ function filterLocations(type, display) {
         locations[i].style.display = 'block';
       } else {
         locations[i].style.display = 'none';
+        //Uncheck all the corresponding locations when a location type gets unchecked.
         locations[i].firstChild.checked = false;
       }
     }
   }
 }
 
+//Funtion that toggles the location text when a location type gets checked.
 function toggleLocationText() {
-  for (let i = 0; i < locationTypes.length; i++) {
-    if (locationTypes[i].firstElementChild.checked) {
-      locationsText.style.display = 'none';
-      return;
-    }
-  }
-  locationsText.style.display = 'block';
+  oneChecked(locationTypes)
+    ? (locationsText.style.display = 'none')
+    : (locationsText.style.display = 'block');
 }
 
+//Update the age counter element when the silder recieves an input.
 ageSlider.addEventListener('input', () => {
   let countValue = ageSlider.value;
   countValue != 0
@@ -66,6 +68,7 @@ ageSlider.addEventListener('input', () => {
   enableSubmitButton();
 });
 
+//All of the following event listeners check if the submit button can be enabled.
 dogeVibesList.addEventListener('click', e => {
   if (e.target.tagName == 'INPUT') {
     enableSubmitButton();
@@ -74,6 +77,7 @@ dogeVibesList.addEventListener('click', e => {
 
 locationTypesList.addEventListener('click', e => {
   if (e.target.tagName == 'INPUT') {
+    //Filter the locations and toggle the location text based on the given input.
     filterLocations(e.target.id, e.target.checked);
     toggleLocationText();
     enableSubmitButton();
@@ -86,6 +90,7 @@ locationsList.addEventListener('click', e => {
   }
 });
 
+//Turn the display of the locations off and disable the submit button when the user first loads the search page.
 window.addEventListener('load', () => {
   for (let i = 0; i < locations.length; i++) {
     locations[i].style.display = 'none';

@@ -18,7 +18,7 @@ You can install my project locally by running the following command in your loca
 
 - `git clone https://github.com/Steinberg99/project-tech`
 
-When you have cloned my repository be sure to run the command `npm install` to install all of the project dependencies. When you have done this you can run the command `npm start` to start DogeMeet. DogeMeet currently only works for mobile screens so be sure to select a mobile screen size using the inspector in Google Chrome (Option + ⌘ + J on macOS or Shift + CTRL + J on Windows).
+When you have cloned my repository be sure to run the command `npm install` to install all of the project dependencies. When you have done this you can run the command `npm start` to start DogeMeet. DogeMeet currently only works for mobile screens so be sure to select a mobile screen size using the inspector in Google Chrome (Option + ⌘ + J on macOS or Shift + CTRL + J on Windows). The website should run in the browser when visiting `localhost:4200`.
 
 # Technologies
 
