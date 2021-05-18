@@ -2,9 +2,9 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const { MongoClient } = require('mongodb');
 const app = express();
-const port = 4200;
+let port = process.env.PORT;
 
-const client = new MongoClient(process.env.DB_URL, {
+const client = new MongoClient(process.env.DB_URI, {
   retryWrites: true,
   useUnifiedTopology: true,
   useNewUrlParser: true
@@ -212,6 +212,10 @@ app.use(express.static('static'));
 app.use((req, res) => {
   res.status(404).send('Error 404');
 });
+
+if (port == null || port == '') {
+  port = 4200;
+}
 
 app.listen(port, () => {
   console.log(`Listening at https://localhost:${port}`);
