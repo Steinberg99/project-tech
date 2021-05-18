@@ -109,6 +109,7 @@ let currentDoggo;
 
 //Test function for connecting with the database.
 async function connectDB() {
+  console.log(client);
   try {
     await client.connect();
     await listDatabases(client);
