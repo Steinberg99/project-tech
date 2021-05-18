@@ -13,28 +13,28 @@ let submitButton = document.querySelector('#submit_button');
 
 //Function that enables the submit button when the user has filled in all the search criteria.
 function enableSubmitButton() {
-  if (
-    ageSlider.value == 0 ||
-    !oneChecked(dogeVibes) ||
-    !oneChecked(locationTypes) ||
-    !oneChecked(locations)
-  ) {
-    submitButton.disabled = true;
-  } else {
-    submitButton.disabled = false;
-  }
+  shouldSubmitButtonBeEnabled()
+    ? (submitButton.disabled = false)
+    : (submitButton.disabled = true);
+}
+
+function shouldSubmitButtonBeEnabled() {
+  return (
+    ageSlider.value != 0 &&
+    isOneBoxChecked(dogeVibes) &&
+    isOneBoxChecked(locationTypes) &&
+    isOneBoxChecked(locations)
+  );
 }
 
 //Function that checks if one of the ceckboxes in a list has been checked.
-function oneChecked(list) {
-  let oneChecked = false;
+function isOneBoxChecked(list) {
   for (let i = 0; i < list.length; i++) {
     if (list[i].firstElementChild.checked) {
-      oneChecked = true;
-      break;
+      return true;
     }
   }
-  return oneChecked;
+  return false;
 }
 
 //Function that filters the locations based on the checked location types.
@@ -54,7 +54,7 @@ function filterLocations(type, display) {
 
 //Funtion that toggles the location text when a location type gets checked.
 function toggleLocationText() {
-  oneChecked(locationTypes)
+  isOneBoxChecked(locationTypes)
     ? (locationsText.style.display = 'none')
     : (locationsText.style.display = 'block');
 }
@@ -69,23 +69,23 @@ ageSlider.addEventListener('input', () => {
 });
 
 //All of the following event listeners check if the submit button can be enabled.
-dogeVibesList.addEventListener('click', e => {
-  if (e.target.tagName == 'INPUT') {
+dogeVibesList.addEventListener('click', event => {
+  if (event.target.tagName == 'INPUT') {
     enableSubmitButton();
   }
 });
 
-locationTypesList.addEventListener('click', e => {
-  if (e.target.tagName == 'INPUT') {
+locationTypesList.addEventListener('click', event => {
+  if (event.target.tagName == 'INPUT') {
     //Filter the locations and toggle the location text based on the given input.
-    filterLocations(e.target.id, e.target.checked);
+    filterLocations(event.target.id, event.target.checked);
     toggleLocationText();
     enableSubmitButton();
   }
 });
 
-locationsList.addEventListener('click', e => {
-  if (e.target.tagName == 'INPUT') {
+locationsList.addEventListener('click', event => {
+  if (event.target.tagName == 'INPUT') {
     enableSubmitButton();
   }
 });

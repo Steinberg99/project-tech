@@ -62,9 +62,9 @@ html
                         p(id="locations_text") Select a Location Type and find the nearest places where you can meet other dog owners!
                         ul(id="locations_list" class="checkbox_list")
                             each location in locations 
-                                li(class="location_list_item" class=location.location_type)
+                                li(class="location_list_item" class=location.type)
                                     input(type="checkbox" id=`${location.name.toLowerCase()}` name=`${location.name.toLowerCase()}`)
                                     label(for=`${location.name.toLowerCase()}`)= location.name
-                                        span= location.location_distance
+                                        span= location.distance
                 input(id="submit_button" class="primary_button" type="submit" value="Search")
     script(src="../public/js/search.js") 

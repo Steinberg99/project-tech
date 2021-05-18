@@ -48,56 +48,56 @@ const doggos = [
 ];
 
 //The currect example locations. These would also eventualy be moved to the database.
-const locationsExample = [
+const locations = [
   {
     name: 'Het Amsterdamse Bos',
-    location_distance: '400m',
-    location_type: 'forest'
+    distance: '400m',
+    type: 'forest'
   },
   {
     name: 'Super cool meer',
-    location_distance: '700m',
-    location_type: 'lake'
+    distance: '700m',
+    type: 'lake'
   },
   {
     name: 'Een mooie straat',
-    location_distance: '900m',
-    location_type: 'city_walk'
+    distance: '900m',
+    type: 'city_walk'
   },
   {
     name: 'Een ander bos',
-    location_distance: '1.2km',
-    location_type: 'forest'
+    distance: '1.2km',
+    type: 'forest'
   },
   {
     name: 'Wow, nog een bos',
-    location_distance: '1.5km',
-    location_type: 'forest'
+    distance: '1.5km',
+    type: 'forest'
   },
   {
     name: 'Deens park',
-    location_distance: '1.7km',
-    location_type: 'park'
+    distance: '1.7km',
+    type: 'park'
   },
   {
     name: 'Een super cool strand',
-    location_distance: '2.4km',
-    location_type: 'beach'
+    distance: '2.4km',
+    type: 'beach'
   },
   {
     name: 'Park Pannenkoek',
-    location_distance: '4km',
-    location_type: 'park'
+    distance: '4km',
+    type: 'park'
   },
   {
     name: 'Een strand',
-    location_distance: '4.6km',
-    location_type: 'beach'
+    distance: '4.6km',
+    type: 'beach'
   },
   {
     name: 'Bazinga meer',
-    location_distance: '6.3km',
-    location_type: 'lake'
+    distance: '6.3km',
+    type: 'lake'
   }
 ];
 
@@ -157,7 +157,7 @@ app.get('/', (req, res) => {
   currentDoggo = nextNotLikedOrDislikedDoge();
   res.render('home', {
     doge: currentDoggo,
-    location: locationsExample[0]
+    location: locations[0]
   });
 });
 
@@ -165,7 +165,7 @@ app.get('/', (req, res) => {
 app.get('/profile/:profileId', (req, res) => {
   res.render('profile', {
     doge: getDogeProfile(req.params.profileId),
-    location: locationsExample[0]
+    location: locations[0]
   });
 });
 
@@ -174,7 +174,7 @@ app.get('/search', (req, res) => {
   //Reset the liked and disliked arrays. Otherwise you cannot repeat the feature without restarting the server.
   likedDoggos = [];
   dislikedDoggos = [];
-  res.render('search', { locations: locationsExample });
+  res.render('search', { locations: locations });
 });
 
 //Render the liked doggos page.
@@ -188,7 +188,7 @@ app.post('/search-result', (req, res) => {
   currentDoggo = nextNotLikedOrDislikedDoge();
   res.render('home', {
     doge: currentDoggo,
-    location: locationsExample[0]
+    location: locations[0]
   });
 });
 
@@ -202,7 +202,7 @@ app.post('/like', (req, res) => {
   currentDoggo = nextNotLikedOrDislikedDoge();
   res.render('home', {
     doge: currentDoggo,
-    location: locationsExample[0]
+    location: locations[0]
   });
 });
 
