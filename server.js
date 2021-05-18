@@ -131,7 +131,6 @@ async function listDatabases(client) {
 
 //Function that returns a doge profile based on a gived profileId.
 function getDogeProfile(id) {
-  console.log(`Doge profile id: ${id}`);
   return doggos[id - 1];
 }
 
@@ -179,7 +178,6 @@ app.get('/search', (req, res) => {
 
 //Render the liked doggos page.
 app.get('/liked', (req, res) => {
-  console.log(likedDoggos);
   res.render('liked', { likedDoges: likedDoggos });
 });
 
