@@ -6,16 +6,16 @@ html
     body 
         include components/header.pug
         main
-            if(doge) 
-                a(href=`/profile/${doge.id}`) 
+            if(doggo) 
+                a(href=`/profile/${doggo.id}`) 
                     article 
                         div(class="image_container")
-                            img(src=`${doge.image_link}`, alt=`A picture of ${doge.name}`)
+                            img(src=`${doggo.image_link}`, alt=`A picture of ${doggo.name}`)
                         section 
                             div 
-                                h3= `${doge.name}, ${doge.age}`
+                                h3= `${doggo.name}, ${doggo.age}`
                                 p= location.name
-                            p= doge.description
+                            p= doggo.description
                 include components/like.pug
                 include components/nav.pug
             else 

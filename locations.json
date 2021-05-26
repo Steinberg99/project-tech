@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Het Amsterdamse Bos",
+    "distance": "400m",
+    "type": "forest"
+  },
+  {
+    "id": 2,
+    "name": "Super cool meer",
+    "distance": "700m",
+    "type": "lake"
+  },
+  {
+    "id": 3,
+    "name": "Een mooie straat",
+    "distance": "900m",
+    "type": "city_walk"
+  },
+  {
+    "id": 4,
+    "name": "Een ander bos",
+    "distance": "1.2km",
+    "type": "forest"
+  },
+  {
+    "id": 5,
+    "name": "Wow, nog een bos",
+    "distance": "1.5km",
+    "type": "forest"
+  },
+  {
+    "id": 6,
+    "name": "Deens park",
+    "distance": "1.7km",
+    "type": "park"
+  },
+  {
+    "id": 7,
+    "name": "Een super cool strand",
+    "distance": "2.4km",
+    "type": "beach"
+  },
+  {
+    "id": 8,
+    "name": "Park Pannenkoek",
+    "distance": "4km",
+    "type": "park"
+  },
+  {
+    "id": 9,
+    "name": "Een strand",
+    "distance": "4.6km",
+    "type": "beach"
+  },
+  {
+    "id": 10,
+    "name": "Meer gevuld met water",
+    "distance": "6.3km",
+    "type": "lake"
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "Kenji",
+    "age": 6,
+    "breed": "Shiba Inu",
+    "image_link": "/public/images/doge_example_kenji.png",
+    "profile_image_link": "/public/images/doge_example_kenji_profile.png",
+    "doge_vibe": ["relaxed", "cute", "fluffy"],
+    "description": "Heyo, dit is mijn Shiba Inu Kenji. Hij houd erg van andere honden en buiten spelen!",
+    "location_id": 1
+  },
+  {
+    "id": 2,
+    "name": "Scooby",
+    "age": 10,
+    "breed": "Mix",
+    "image_link": "/public/images/doge_example_scooby.png",
+    "profile_image_link": "/public/images/doge_example_scooby_profile.png",
+    "doge_vibe": ["relaxed", "cute"],
+    "description": "Hallo! Dit is mijn hond Scooby. Hij is een beetje ondeugend maar wel heel lief.",
+    "location_id": 3
+  },
+  {
+    "id": 3,
+    "name": "Fred",
+    "age": 3,
+    "breed": "Pug",
+    "image_link": "/public/images/doge_example_fred.png",
+    "profile_image_link": "/public/images/doge_example_fred_profile.png",
+    "doge_vibe": ["cute", "chubby"],
+    "description": "Fred is een beetje dik maar wel heel cute. Kijk z’n tong uitsteken dan!",
+    "location_id": 2
+  },
+  {
+    "id": 4,
+    "name": "Wimpie",
+    "age": 6,
+    "breed": "Shiba Inu",
+    "image_link": "/public/images/doge_example_kenji.png",
+    "profile_image_link": "/public/images/doge_example_kenji_profile.png",
+    "doge_vibe": ["relaxed", "cute", "fluffy"],
+    "description": "Heyo, dit is mijn Shiba Inu Wimpie. Hij houd erg van andere honden en buiten spelen!",
+    "location_id": 4
+  },
+  {
+    "id": 5,
+    "name": "Henk",
+    "age": 7,
+    "breed": "Mix",
+    "image_link": "/public/images/doge_example_scooby.png",
+    "profile_image_link": "/public/images/doge_example_scooby_profile.png",
+    "doge_vibe": ["relaxed", "cute"],
+    "description": "Hallo! Dit is mijn hond Henk. Hij is een beetje ondeugend maar wel heel lief.",
+    "location_id": 6
+  },
+  {
+    "id": 6,
+    "name": "Puggo",
+    "age": 12,
+    "breed": "Pug",
+    "image_link": "/public/images/doge_example_fred.png",
+    "profile_image_link": "/public/images/doge_example_fred_profile.png",
+    "doge_vibe": ["cute", "chubby"],
+    "description": "Puggo is een beetje dik maar wel heel cute. Kijk z’n tong uitsteken dan!",
+    "location_id": 5
+  },
+  {
+    "id": 7,
+    "name": "Sanne",
+    "age": 5,
+    "breed": "Shiba Inu",
+    "image_link": "/public/images/doge_example_kenji.png",
+    "profile_image_link": "/public/images/doge_example_kenji_profile.png",
+    "doge_vibe": ["relaxed", "cute", "fluffy"],
+    "description": "Heyo, dit is mijn Shiba Inu Sanne. Hij houd erg van andere honden en buiten spelen!",
+    "location_id": 7
+  },
+  {
+    "id": 8,
+    "name": "Harry",
+    "age": 5,
+    "breed": "Mix",
+    "image_link": "/public/images/doge_example_scooby.png",
+    "profile_image_link": "/public/images/doge_example_scooby_profile.png",
+    "doge_vibe": ["relaxed", "cute"],
+    "description": "Hallo! Dit is mijn hond Harry. Hij is een beetje ondeugend maar wel heel lief.",
+    "location_id": 8
+  },
+  {
+    "id": 9,
+    "name": "Dobby",
+    "age": 9,
+    "breed": "Pug",
+    "image_link": "/public/images/doge_example_fred.png",
+    "profile_image_link": "/public/images/doge_example_fred_profile.png",
+    "doge_vibe": ["cute", "chubby"],
+    "description": "Dobby is een beetje dik maar wel heel cute. Kijk z’n tong uitsteken dan!",
+    "location_id": 10
+  },
+  {
+    "id": 10,
+    "name": "Stef",
+    "age": 8,
+    "breed": "Shiba Inu",
+    "image_link": "/public/images/doge_example_kenji.png",
+    "profile_image_link": "/public/images/doge_example_kenji_profile.png",
+    "doge_vibe": ["relaxed", "cute", "fluffy"],
+    "description": "Heyo, dit is mijn Shiba Inu Stef. Hij houd erg van andere honden en buiten spelen!",
+    "location_id": 9
+  }
+]
