@@ -1,9 +1,8 @@
-const { parse } = require('dotenv');
-const { query } = require('express');
 const express = require('express');
 const dotenv = require('dotenv').config();
 const { MongoClient } = require('mongodb');
 const app = express();
+
 let database = null;
 let port = process.env.PORT;
 
@@ -17,70 +16,88 @@ app.use(express.urlencoded({ extended: true }));
 
 //Render the homepage.
 app.get('/', async (req, res) => {
-  //Retrieve the user data.
-  let user = await database
-    .collection('users')
-    .findOne({ name: 'Stein Bergervoet' });
+  try {
+    //Retrieve the user data.
+    let user = await database
+      .collection('users')
+      .findOne({ name: 'Stein Bergervoet' });
 
-  //Retrieve the doggos array based on the last query the user submitted.
-  let query = {};
-  if (Object.keys(user.last_query).length !== 0) {
-    console.log(user.last_query);
-    query = createQuery(
-      user.last_query.age,
-      user.last_query.doge_vibes,
-      user.last_query.locations
-    );
+    //Retrieve the doggos array based on the last query the user submitted.
+    let query = {};
+    if (Object.keys(user.last_query).length !== 0) {
+      query = createQuery(
+        user.last_query.age,
+        user.last_query.doge_vibes,
+        user.last_query.locations
+      );
+    }
+    doggos = await database.collection('doggos').find(query, {}).toArray();
+    doggos = await removeLikedOrDislikedDoggos();
+
+    if (doggos[0]) {
+      currentDoggo = doggos[0];
+      let location = await getLocation(currentDoggo.location_id);
+      res.render('home', {
+        doggo: currentDoggo,
+        location: location
+      });
+    } else {
+      res.render('home', {
+        doggo: undefined,
+        location: undefined
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
-  doggos = await database.collection('doggos').find(query, {}).toArray();
-  doggos = await removeLikedOrDislikedDoggos();
-
-  currentDoggo = doggos[0];
-  let location = await getLocation(currentDoggo.location_id);
-  res.render('home', {
-    doggo: currentDoggo,
-    location: location
-  });
 });
 
 //Render the search page.
 app.get('/search', async (req, res) => {
-  locations = await database.collection('locations').find({}, {}).toArray();
-  res.render('search', { locations: locations });
+  try {
+    locations = await database.collection('locations').find({}, {}).toArray();
+    res.render('search', { locations: locations });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //Render the homepage after the search form has been submitted.
 app.post('/search-result', async (req, res) => {
-  //Retrieve the doggos array based on the created query.
-  let query = createQuery(
-    req.body.age,
-    req.body.doge_vibes,
-    req.body.locations
-  );
-  doggos = await database.collection('doggos').find(query, {}).toArray();
-  doggos = await removeLikedOrDislikedDoggos();
-
-  //Store the query parameters for later use.
-  await database
-    .collection('users')
-    .updateOne(
-      { name: 'Stein Bergervoet' },
-      { $set: { last_query: req.body } }
+  try {
+    //Retrieve the doggos array based on the created query.
+    let query = createQuery(
+      req.body.age,
+      req.body.doge_vibes,
+      req.body.locations
     );
+    doggos = await database.collection('doggos').find(query, {}).toArray();
+    doggos = await removeLikedOrDislikedDoggos();
 
-  //Render the homepage based on the content of the doggos array.
-  if (doggos[0]) {
-    currentDoggo = doggos[0];
-    let location = await getLocation(currentDoggo.location_id);
-    res.render('home', {
-      doggo: currentDoggo,
-      location: location
-    });
-  } else {
-    res.render('home', {
-      doggo: undefined,
-      location: undefined
-    });
+    //Store the query parameters for later use.
+    await database
+      .collection('users')
+      .updateOne(
+        { name: 'Stein Bergervoet' },
+        { $set: { last_query: req.body } }
+      );
+
+    //Render the homepage based on the content of the doggos array.
+    if (doggos[0]) {
+      currentDoggo = doggos[0];
+      let location = await getLocation(currentDoggo.location_id);
+      res.render('home', {
+        doggo: currentDoggo,
+        location: location
+      });
+    } else {
+      res.render('home', {
+        doggo: undefined,
+        location: undefined
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 
@@ -96,92 +113,124 @@ function createQuery(age, dogeVibes, selectedLocations) {
 }
 
 async function removeLikedOrDislikedDoggos() {
-  let user = await database
-    .collection('users')
-    .findOne({ name: 'Stein Bergervoet' });
+  try {
+    let user = await database
+      .collection('users')
+      .findOne({ name: 'Stein Bergervoet' });
 
-  let filteredDoggos = [];
-  for (let i = 0; i < doggos.length; i++) {
-    if (
-      !user.liked_doggos.includes(doggos[i].id) &&
-      !user.disliked_doggos.includes(doggos[i].id)
-    ) {
-      filteredDoggos.push(doggos[i]);
+    let filteredDoggos = [];
+    for (let i = 0; i < doggos.length; i++) {
+      if (
+        !user.liked_doggos.includes(doggos[i].id) &&
+        !user.disliked_doggos.includes(doggos[i].id)
+      ) {
+        filteredDoggos.push(doggos[i]);
+      }
     }
+    return filteredDoggos;
+  } catch (error) {
+    console.log(error);
   }
-  console.log(filteredDoggos);
-  return filteredDoggos;
 }
 
 //Render the profile page.
 app.get('/profile/:profileId', async (req, res) => {
-  let doggoProfile = await getDoggoProfile(parseInt(req.params.profileId), 10);
-  let location = await getLocation(doggoProfile.location_id);
-  res.render('profile', {
-    doge: doggoProfile,
-    location: location
-  });
+  try {
+    //Retrieve the doggo profile.
+    let doggoProfile = await getDoggoProfile(
+      parseInt(req.params.profileId, 10)
+    );
+    let location = await getLocation(doggoProfile.location_id);
+    res.render('profile', {
+      doge: doggoProfile,
+      location: location
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 async function getDoggoProfile(id) {
-  return (profile = await database.collection('doggos').findOne({ id: id }));
+  try {
+    return (profile = await database.collection('doggos').findOne({ id: id }));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function getLocation(id) {
-  return (location = await database
-    .collection('locations')
-    .findOne({ id: id }));
+  try {
+    return (location = await database
+      .collection('locations')
+      .findOne({ id: id }));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //Render the liked doggos page.
 app.get('/liked', async (req, res) => {
-  let likedDoggos = await getLikedDoggos();
-  res.render('liked', { likedDoges: likedDoggos });
+  try {
+    let likedDoggos = await getLikedDoggos();
+    res.render('liked', { likedDoges: likedDoggos });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 async function getLikedDoggos() {
-  let user = await database
-    .collection('users')
-    .findOne({ name: 'Stein Bergervoet' });
+  try {
+    let user = await database
+      .collection('users')
+      .findOne({ name: 'Stein Bergervoet' });
 
-  let likedDoggos = await database
-    .collection('doggos')
-    .find({ id: { $in: user.liked_doggos } }, {})
-    .toArray();
+    let likedDoggos = await database
+      .collection('doggos')
+      .find({ id: { $in: user.liked_doggos } }, {})
+      .toArray();
 
-  return likedDoggos;
+    return likedDoggos;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //Render the home page after the user had liked or disliked a doggo.
 app.post('/like', async (req, res) => {
-  if (req.body.cute || req.body.cool || req.body.pretty) {
-    database
-      .collection('users')
-      .updateOne(
-        { name: 'Stein Bergervoet' },
-        { $push: { liked_doggos: currentDoggo.id } }
-      );
-  } else {
-    database
-      .collection('users')
-      .updateOne(
-        { name: 'Stein Bergervoet' },
-        { $push: { disliked_doggos: currentDoggo.id } }
-      );
-  }
+  try {
+    //Storte the current doggo id in the liked or disliked arrays in the database.
+    if (req.body.cute || req.body.cool || req.body.pretty) {
+      database
+        .collection('users')
+        .updateOne(
+          { name: 'Stein Bergervoet' },
+          { $push: { liked_doggos: currentDoggo.id } }
+        );
+    } else {
+      database
+        .collection('users')
+        .updateOne(
+          { name: 'Stein Bergervoet' },
+          { $push: { disliked_doggos: currentDoggo.id } }
+        );
+    }
 
-  currentDoggo = getNextDoggo();
-  if (currentDoggo != undefined) {
-    let location = await getLocation(currentDoggo.location_id);
-    res.render('home', {
-      doggo: currentDoggo,
-      location: location
-    });
-  } else {
-    res.render('home', {
-      doggo: undefined,
-      location: undefined
-    });
+    //Render the next doggo on the homepage.
+    currentDoggo = getNextDoggo();
+    if (currentDoggo != undefined) {
+      let location = await getLocation(currentDoggo.location_id);
+      res.render('home', {
+        doggo: currentDoggo,
+        location: location
+      });
+    } else {
+      res.render('home', {
+        doggo: undefined,
+        location: undefined
+      });
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 
