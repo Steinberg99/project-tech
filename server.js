@@ -200,14 +200,14 @@ app.post('/like', async (req, res) => {
   try {
     //Storte the current doggo id in the liked or disliked arrays in the database.
     if (req.body.cute || req.body.cool || req.body.pretty) {
-      database
+      await database
         .collection('users')
         .updateOne(
           { name: 'Stein Bergervoet' },
           { $push: { liked_doggos: currentDoggo.id } }
         );
     } else {
-      database
+      await database
         .collection('users')
         .updateOne(
           { name: 'Stein Bergervoet' },
