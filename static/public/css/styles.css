@@ -12,7 +12,7 @@ body {
   background-color: #0b0e11;
 }
 
-/* Styles for the header. */
+/* Styles for the header component */
 
 header {
   display: flex;
@@ -44,7 +44,7 @@ header img {
   border-radius: none;
 }
 
-/* Styles for the like component. */
+/* Styles for the like component */
 
 #like_form {
   display: flex;
@@ -68,7 +68,7 @@ header img {
   background-color: #ca9ce1;
 }
 
-/* Styles for the nav component. */
+/* Styles for the nav component */
 
 nav {
   position: fixed;
@@ -92,7 +92,7 @@ nav li + li {
   margin-left: 3rem;
 }
 
-/* Styles for the different headers, paragraphs list elements and labels. */
+/* Styles for the different headers, paragraphs list elements and labels */
 
 h1 {
   font-size: 32px;
@@ -140,6 +140,8 @@ label {
 .p_small {
   font-size: 12px;
 }
+
+/* Styles for the list items */
 
 li {
   list-style-type: none;
